@@ -13,15 +13,15 @@ Numeric Time Human Friendly Text
 
  
 
-1:00 One o'clock
-2:00 Two o'clock
-13:00 One o'clock
-13:05 Five past one
-13:10 Ten past one
-13:25 Twenty five past one
-13:30 Half past one
-13:35 Twenty five to two
-13:55 Five to two
+- 1:00 One o'clock
+- 2:00 Two o'clock
+- 13:00 One o'clock
+- 13:05 Five past one
+- 13:10 Ten past one
+- 13:25 Twenty five past one
+- 13:30 Half past one
+- 13:35 Twenty five to two
+- 13:55 Five to two
  
 
 For example, if we execute this program at 16:30, it should output "Half past four"
