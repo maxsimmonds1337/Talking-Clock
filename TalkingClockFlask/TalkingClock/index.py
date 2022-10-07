@@ -1,34 +1,21 @@
 ## import modules
 import sys
-
-# Objective 1
-
-# Write a command-line program that returns the current time using the "Human Friendly Text" demonstrated in the example below.
-# Numeric Time Human Friendly Text
-
-# 1:00 One o'clock
-# 2:00 Two o'clock
-# 13:00 One o'clock
-# 13:05 Five past one
-# 13:10 Ten past one
-# 13:25 Twenty five past one
-# 13:30 Half past one
-# 13:35 Twenty five to two
-# 13:55 Five to two
-
-# For example, if we execute this program at 16:30, it should output "Half past four"
-
-# $ ..some command..
-# Half past four
-
-## step 0, get the command line inputs, and split it apart from the colon:
+from time import localtime, strftime 
 
 # TODO make it so that the first letter is capitalised
-
-
 ## TODO a few checks will need to be done here: make sure all hours < 25, make sure mins <60, make
 # sure both are >0, make sure there is only 1 ':', does it work with 0's for example 15:01
-time_input = sys.argv[1]
+
+number_of_args = len(sys.argv)
+
+# check to see if there are too many args, or if the user wants the current time, or to request a time
+if number_of_args > 2:
+    exit("\nusage: TalkingClock.py [HH:MM]\n")
+elif number_of_args == 1:
+    time_input = strftime("%H:%M", localtime()) ## get the local time from the PC
+else:
+    time_input = sys.argv[1]
+
 hours, minutes = map(int, time_input.split(":"))
 ## TODO rename array, units doesn't make sense for >10
 numbers_units = ["o'clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fithteen", "sixteen", "seventeen", "eighteen", "nineteen"]
