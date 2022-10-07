@@ -2,7 +2,6 @@
 import sys
 from time import localtime, strftime 
 
-# TODO make it so that the first letter is capitalised
 ## TODO a few checks will need to be done here: make sure all hours < 25, make sure mins <60, make
 # sure both are >0, make sure there is only 1 ':', does it work with 0's for example 15:01
 
@@ -17,23 +16,27 @@ else:
     time_input = sys.argv[1]
 
 hours, minutes = map(int, time_input.split(":"))
+
+# check to make sure the input is correct
+if hours > 23 or minutes > 59:
+    exit("\nusage: TalkingClock.py [HH:MM]\n")
+
 ## TODO rename array, units doesn't make sense for >10
 numbers_units = ["o'clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fithteen", "sixteen", "seventeen", "eighteen", "nineteen"]
 numbers_tens = ["", "", "twenty", "thirty", "fourty", "fifty"]
 quarters = {1: "quarter past ", 2: "half past ", 3: "quarter to "}
+text_time = ""
 
 def convert_minutes_to_text(number):
-    #get the tens
+    ans = ""
     tens = number // 10
     units = number % 10
 
-    ans = ""
-
-    ## TODO add a space between these
     if number < 20:
         return numbers_units[number]
     if(tens != 0):
         ans += numbers_tens[tens]
+        ans += " "
     if(units != 0):
         ans += numbers_units[units]
     return ans
@@ -44,8 +47,6 @@ def convert_hours_to_text(number):
         return numbers_units[hours]
     else:
         return numbers_units[hours-12]
-
-text_time = ""
 
 if minutes == 0:
     ## if there are no minutes, then it's an "o'clock" at the end, this is handled neatly by the 0 index of the numbers_units array
@@ -72,6 +73,4 @@ else:
     text_time += " past "
     text_time += convert_hours_to_text(hours)
 
-print(text_time)
-
-
+print(text_time.capitalize())
