@@ -33,6 +33,7 @@ hours, minutes = map(int, time_input.split(":"))
 ## TODO rename array, units doesn't make sense for >10
 numbers_units = ["o'clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fithteen", "sixteen", "seventeen", "eighteen", "nineteen"]
 numbers_tens = ["", "", "twenty", "thirty", "fourty", "fifty"]
+quarters = {1: "quarter past ", 2: "half past ", 3: "quarter to "}
 
 def convert_minutes_to_text(number):
     #get the tens
@@ -66,7 +67,12 @@ if minutes == 0:
     text_time += convert_minutes_to_text(minutes)
 
 elif minutes % 15 == 0:
-    pass
+    #if we're here, then minutes is either 15, 30, or 45 (can't be zero, as the case above catches that)
+    quarters_index = minutes//15
+    text_time += quarters[quarters_index]
+    if quarters_index == 3:
+        hours+=1
+    text_time += convert_hours_to_text(hours)
 
 elif(minutes > 30):
     hours += 1  ## if we're here, then we need to say were 'x' _to_ the up and coming hour, so inc the hour
