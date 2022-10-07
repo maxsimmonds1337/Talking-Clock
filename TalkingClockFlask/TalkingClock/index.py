@@ -2,8 +2,7 @@
 import sys
 from time import localtime, strftime 
 
-## TODO a few checks will need to be done here: make sure all hours < 25, make sure mins <60, make
-# sure both are >0, make sure there is only 1 ':', does it work with 0's for example 15:01
+## TODO make sure there is only 1 ':', make sure non numerics are handled well
 
 number_of_args = len(sys.argv)
 
@@ -17,11 +16,10 @@ else:
 
 hours, minutes = map(int, time_input.split(":"))
 
-# check to make sure the input is correct
-if hours > 23 or minutes > 59:
+# check to make sure the input is correct (non negative and hours < 24, mins <60)
+if (hours > 23) or (minutes > 59) or (hours < 0) or (minutes < 0):
     exit("\nusage: TalkingClock.py [HH:MM]\n")
 
-## TODO rename array, units doesn't make sense for >10
 numbers_units = ["o'clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fithteen", "sixteen", "seventeen", "eighteen", "nineteen"]
 numbers_tens = ["", "", "twenty", "thirty", "fourty", "fifty"]
 quarters = {1: "quarter past ", 2: "half past ", 3: "quarter to "}
@@ -59,6 +57,7 @@ elif minutes % 15 == 0:
     quarters_index = minutes//15
     text_time += quarters[quarters_index]
     if quarters_index == 3:
+        # if it's 3, then we're "quarter to" which means the hour needs to be incremented
         hours+=1
     text_time += convert_hours_to_text(hours)
 
@@ -73,4 +72,4 @@ else:
     text_time += " past "
     text_time += convert_hours_to_text(hours)
 
-print(text_time.capitalize())
+print(text_time.capitalize())   ## make the first letter a captial
