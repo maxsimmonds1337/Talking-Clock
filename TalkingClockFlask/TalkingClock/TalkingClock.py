@@ -80,3 +80,5 @@ def TalkingClock():
 
 if __name__ != '__main__':
     TalkingClock()  # next section explains the use of sys.exit
+else:
+    print(TalkingClock())
