@@ -26,10 +26,10 @@ def convert_minutes_to_text(number):
 
 def convert_hours_to_text(number):
     ## we want to wrap the 24 hour clock back around to the start of the numbers_units array if it's greater that 12
-    if hours < 13:
-        return numbers_units[hours]
+    if number < 13:
+        return numbers_units[number]
     else:
-        return numbers_units[hours-12]
+        return numbers_units[number-12]
 
 def TalkingClock():
 
@@ -78,6 +78,8 @@ def TalkingClock():
 
     return text_time.capitalize()  ## make the first letter a captial
 
+
+##ask if this is okay to do?
 if __name__ != '__main__':
     TalkingClock()  # next section explains the use of sys.exit
 else:
