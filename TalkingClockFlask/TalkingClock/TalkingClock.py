@@ -43,7 +43,7 @@ def TalkingClock_rest_request_time(arguments):
 
 @app.route("/")
 def TalkingClock_rest_current_time():
-    time_input = strftime("%H:%M", localtime()) ## get the local time from the PC
+    time_input = strftime("%H:%M", localtime()) ##   get the local time from the PC
 
     return TalkingClock(["REST_api", time_input])
 
