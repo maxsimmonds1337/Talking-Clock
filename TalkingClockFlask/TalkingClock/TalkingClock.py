@@ -26,7 +26,10 @@ def convert_minutes_to_text(number):
 
 def convert_hours_to_text(number):
     ## we want to wrap the 24 hour clock back around to the start of the numbers_units array if it's greater that 12
-    if number < 13:
+    if number == 0:
+        # the 0th hour is midnight
+        return numbers_units[12]
+    elif number < 13:
         return numbers_units[number]
     else:
         return numbers_units[number-12]
