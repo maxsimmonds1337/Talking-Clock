@@ -2,7 +2,6 @@
 import sys
 from time import localtime, strftime 
 
-## TODO make sure there is only 1 ':', make sure non numerics are handled well
 numbers_units = ["o'clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fithteen", "sixteen", "seventeen", "eighteen", "nineteen"]
 numbers_tens = ["", "", "twenty", "thirty", "fourty", "fifty"]
 quarters = {1: "quarter past ", 2: "half past ", 3: "quarter to "}
@@ -47,6 +46,7 @@ def TalkingClock(arguments):
     else:
         time_input = arguments[1]
 
+    ## split the input, and try to convert to ints
     try:
         hours, minutes = map(int, time_input.split(":"))
     except:
@@ -64,8 +64,8 @@ def TalkingClock(arguments):
 
     elif minutes % 15 == 0:
         #if we're here, then minutes is either 15, 30, or 45 (can't be zero, as the case above catches that)
-        quarters_index = minutes//15
-        text_time += quarters[quarters_index]
+        quarters_index = minutes//15 ## get the index
+        text_time += quarters[quarters_index] ## lookup in dict
         if quarters_index == 3:
             # if it's 3, then we're "quarter to" which means the hour needs to be incremented
             hours+=1
@@ -84,9 +84,8 @@ def TalkingClock(arguments):
 
     return text_time.capitalize()  ## make the first letter a captial
 
-
-##ask if this is okay to do?
+## handle being imported like a module (for pytest mainly)
 if __name__ != '__main__':
-    TalkingClock(sys.argv)
+    TalkingClock(sys.argv) ## returns the value back to the caller
 else:
-    print(TalkingClock(sys.argv))
+    print(TalkingClock(sys.argv))   ## or print to stdout
