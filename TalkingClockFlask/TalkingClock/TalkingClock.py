@@ -44,7 +44,10 @@ def TalkingClock(arguments):
     else:
         time_input = arguments[1]
 
-    hours, minutes = map(int, time_input.split(":"))
+    try:
+        hours, minutes = map(int, time_input.split(":"))
+    except:
+        return("\nusage: TalkingClock.py [HH:MM]\n")    ## if the input isn't two numbers seperated by a colon, then return the usage statement
 
     # check to make sure the input is correct (non negative and hours < 24, mins <60)
     if (hours > 23) or (minutes > 59) or (hours < 0) or (minutes < 0):
