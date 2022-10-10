@@ -1,6 +1,9 @@
 ## import modules
 import sys
 from time import localtime, strftime 
+from flask import Flask
+
+app = Flask(__name__)
 
 numbers_units = ["o'clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fithteen", "sixteen", "seventeen", "eighteen", "nineteen"]
 numbers_tens = ["", "", "twenty", "thirty", "fourty", "fifty"]
@@ -32,6 +35,18 @@ def convert_hours_to_text(number):
         return numbers_units[number]
     else:
         return numbers_units[number-12]
+
+@app.route("/<arguments>")
+def TalkingClock_rest_request_time(arguments):
+    time_input = arguments
+    return TalkingClock(["REST_api", arguments])
+
+@app.route("/")
+def TalkingClock_rest_current_time():
+    time_input = strftime("%H:%M", localtime()) ## get the local time from the PC
+
+    return TalkingClock(["REST_api", time_input])
+
 
 def TalkingClock(arguments):
 
