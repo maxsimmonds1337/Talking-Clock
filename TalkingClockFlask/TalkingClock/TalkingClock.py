@@ -31,24 +31,24 @@ def convert_hours_to_text(number):
     else:
         return numbers_units[number-12]
 
-def TalkingClock():
+def TalkingClock(arguments):
 
-    text_time = ""
-    number_of_args = len(sys.argv)
+    number_of_args = len(arguments)
+    text_time = "" 
 
     # check to see if there are too many args, or if the user wants the current time, or to request a time
     if number_of_args > 2:
-        exit("\nusage: TalkingClock.py [HH:MM]\n")
+        return("\nusage: TalkingClock.py [HH:MM]\n")
     elif number_of_args == 1:
         time_input = strftime("%H:%M", localtime()) ## get the local time from the PC
     else:
-        time_input = sys.argv[1]
+        time_input = arguments[1]
 
     hours, minutes = map(int, time_input.split(":"))
 
     # check to make sure the input is correct (non negative and hours < 24, mins <60)
     if (hours > 23) or (minutes > 59) or (hours < 0) or (minutes < 0):
-        exit("\nusage: TalkingClock.py [HH:MM]\n")
+        return("\nusage: TalkingClock.py [HH:MM]\n")
 
     if minutes == 0:
         ## if there are no minutes, then it's an "o'clock" at the end, this is handled neatly by the 0 index of the numbers_units array
@@ -81,6 +81,6 @@ def TalkingClock():
 
 ##ask if this is okay to do?
 if __name__ != '__main__':
-    TalkingClock()  # next section explains the use of sys.exit
+    TalkingClock(sys.argv)
 else:
-    print(TalkingClock())
+    print(TalkingClock(sys.argv))
