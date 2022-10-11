@@ -15,9 +15,19 @@ Install pipenv (for a virtual enviroment)
 pip install pipenv
 ```
 
-Remember to update your PATH variables if needed!
+```
+pip install pytest
+```
+
+Remember to update your PATH variables if needed! The ``` --user ``` may be required for install.
 
 ## Usasge
+
+### Running Tests
+Run "pytest" in ./TalkingClockFlask/TalkingClock/ :
+```
+pytest
+```
 
 ### REST API
 Run the bootstrap executable, and navigate to <a>localhost:5000/</a>
