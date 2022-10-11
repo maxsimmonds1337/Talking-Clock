@@ -1,5 +1,5 @@
 
-![example event parameter](https://github.com/github/docs/actions/workflows/python-app.yml/badge.svg?event=push)
+![Status](https://github.com/maxsimmonds1337/Talking-Clock/actions/workflows/python-app.yml/badge.svg?event=push)
 
 # Talking-Clock
 Talking clock code for Lloyds Banking group
