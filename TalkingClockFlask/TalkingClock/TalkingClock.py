@@ -1,7 +1,7 @@
 ## import modules
 import sys
 from time import localtime, strftime 
-from flask import Flask
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -39,13 +39,14 @@ def convert_hours_to_text(number):
 @app.route("/<arguments>")
 def TalkingClock_rest_request_time(arguments):
     time_input = arguments
-    return TalkingClock(["REST_api", arguments])
+    result = TalkingClock(["REST_api", time_input])
+    return jsonify(time=result, type="Requested")
 
 @app.route("/")
 def TalkingClock_rest_current_time():
     time_input = strftime("%H:%M", localtime()) ##   get the local time from the PC
-
-    return TalkingClock(["REST_api", time_input])
+    result = TalkingClock(["REST_api", time_input])
+    return jsonify(time=result, type = "Current")
 
 
 def TalkingClock(arguments):

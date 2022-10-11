@@ -1,6 +1,35 @@
 # Talking-Clock
 Talking clock code for Lloyds Banking group
 
+## Installation
+
+Install Flask:
+
+```
+pip install Flask
+```
+
+Install pipenv (for a virtual enviroment)
+
+```
+pip install pipenv
+```
+
+Remember to update your PATH variables if needed!
+
+## Usasge
+
+### REST API
+Run the bootstrap executable, and navigate to <a>localhost:5000/</a>
+
+```
+./bootstrap.sh
+```
+
+If you would like to request a time, then navigate to <a>localhost:5000/10:10</a>
+
+## Objectives 
+
 Within the team, we don't like clocks that display as numbers. In fact, we like clocks that present the current time in a more "Human Friendly" way.
 
 Objective 1
