@@ -42,15 +42,14 @@ def TalkingClock_rest_request_time(arguments = None):
     method = "GET"  # default method is GET, this is overwritten if POST
     if request.method == "POST":
         ## if the data was posted, then set the type and get the posted data
-        method = request.data
-        time_input = "10:10"
-        type = "test"
-        # # time_input = request.form['time']  ## get the posted data
-        # # if time_input == "":
-        # #     type = "Current"    ## if it's empty, the requested data is the current time
-        # #     time_input = strftime("%H:%M", localtime()) ##   get the local time from the server
-        # else:
-        #     type = "Requested"  ## else, it's a requested time
+        method = "POST"
+        data = request.get_json()
+        time_input = data['time']  ## get the time data
+        if time_input == "":
+            type = "Current"    ## if it's empty, the requested data is the current time
+            time_input = strftime("%H:%M", localtime()) ##   get the local time from the server
+        else:
+            type = "Requested"  ## else, it's a requested time
     elif arguments == None:
         ## if the time input is empty, and we're not posting data, they want the current time
         time_input = strftime("%H:%M", localtime()) ##   get the local time from the PC
