@@ -36,17 +36,21 @@ def convert_hours_to_text(number):
     else:
         return numbers_units[number-12]
 
+@app.route("/")
 @app.route("/<arguments>")
-def TalkingClock_rest_request_time(arguments):
+def TalkingClock_rest_request_time(arguments = None):
     time_input = arguments
+    if time_input == None:
+        time_input = strftime("%H:%M", localtime()) ##   get the local time from the PC
+        result = TalkingClock(["REST_api", time_input])
     result = TalkingClock(["REST_api", time_input])
     return jsonify(time=result, type="Requested")
 
-@app.route("/")
-def TalkingClock_rest_current_time():
-    time_input = strftime("%H:%M", localtime()) ##   get the local time from the PC
-    result = TalkingClock(["REST_api", time_input])
-    return jsonify(time=result, type = "Current")
+# @app.route("/", methods=['POST'])
+# def TalkingClock_rest_current_time():
+#     time_input = strftime("%H:%M", localtime()) ##   get the local time from the PC
+#     result = TalkingClock(["REST_api", time_input])
+#     return jsonify(time=result, type = "Current")
 
 
 def TalkingClock(arguments):
