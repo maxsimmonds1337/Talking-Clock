@@ -1,1 +1,1 @@
-web: gunicorn ./TalkingClockFlask/TalkingClock/TalkingClock:app
+web: gunicorn ./TalkingClockFlask/TalkingClock/TalkingClock:app:app
