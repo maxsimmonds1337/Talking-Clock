@@ -1,7 +1,7 @@
 # import modules
 import sys
 from time import localtime, strftime 
-from flask import Flask, jsonify, request, json
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -36,27 +36,21 @@ def convert_hours_to_text(number):
     else:
         return numbers_units[number-12]
 
+## setup some end nodes, root dir for current times (get or post) arguments are passed with the dir
 @app.route("/", methods = ['GET', 'POST'])
 @app.route("/<arguments>", methods = ['GET'])
 def TalkingClock_rest_request_time(arguments = None):
     time_input = arguments
-    type = "Requested"
-    if time_input == None:
-        time_input = strftime("%H:%M", localtime()) ##   get the local time from the PC
-        result = TalkingClock(["REST_api", time_input])
-        type = "Current"
+    type = "Requested"  ## by default, it's a requested type unless otherwise
+    method = "GET"
+    if request.method == "POST":#
+        method = request.get_json()
+    if time_input == None:  ## if time input is empty, user wants current time
+        time_input = strftime("%H:%M", localtime()) ##   get the time in GMT
+        result = TalkingClock(["REST_api", time_input]) ## call the talking clock function
+        type = "Current"    ## set type to current
     result = TalkingClock(["REST_api", time_input])
-    return jsonify(time=result, type=type)
-    # return {
-    #     'statusCode': 200,
-    #     'headers': {
-    #         'Access-Control-Allow-Headers': 'Content-Type',
-    #         'Access-Control-Allow-Origin': 'https://www.example.com',
-    #         'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
-    #     },
-    #     'body': json.dumps('Hello from Lambda!')
-    # }
-
+    return jsonify(method = method, time=result, type=type)
 
 def TalkingClock(arguments):
 
