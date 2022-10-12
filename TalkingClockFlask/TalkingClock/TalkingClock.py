@@ -66,7 +66,7 @@ def TalkingClock(arguments):
     if number_of_args > 2:
         return("\nusage: TalkingClock.py [HH:MM]\n")
     elif number_of_args == 1:
-        time_input = strftime("%H:%M", localtime()) ## get the local time from the PC
+        time_input = strftime("%H:%M", gmtime()) ## get the local time from the PC
     else:
         time_input = arguments[1]
 
