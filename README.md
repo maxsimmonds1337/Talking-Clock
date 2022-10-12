@@ -6,24 +6,12 @@ Talking clock code for Lloyds Banking group
 
 ## Installation
 
+To run this locally, install the following dependancies:
+
 Install Flask:
 
 ```
-pip install Flask
-```
-
-Install pipenv (for a virtual enviroment)
-
-```
-pip install pipenv
-```
-
-```
-pip install pytest
-```
-
-```
-pip install gunicorn==20.0.4
+pip install Flask, pipenv, pytest, gunicorn==20.0.4
 ```
 
 Remember to update your PATH variables if needed! The ``` --user ``` may be required for install.
