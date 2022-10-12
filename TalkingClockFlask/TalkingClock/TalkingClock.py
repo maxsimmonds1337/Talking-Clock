@@ -1,6 +1,6 @@
 # import modules
 import sys
-from time import localtime, strftime 
+from time import gmtime, strftime 
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -48,10 +48,10 @@ def TalkingClock_rest_request_time(arguments = None):
         method = "POST" ## update the method to post
         time_input = data['time'] ## extract the POSTED time input
         if time_input == "":
-            time_input = strftime("%H:%M", localtime()) ##   get the time in GMT
+            time_input = strftime("%H:%M", gmtime()) ##   get the time in GMT
             type = "Current"    ## set type to current
     if time_input == None:  ## if time input is empty, user wants current time
-        time_input = strftime("%H:%M", localtime()) ##   get the time in GMT
+        time_input = strftime("%H:%M", gmtime()) ##   get the time in GMT
         type = "Current"    ## set type to current
     
     result = TalkingClock(["REST_api", time_input])
