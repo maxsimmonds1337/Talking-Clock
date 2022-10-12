@@ -1,1 +1,1 @@
-web: gunicorn ./TalkingClockFlask/TalkingClock/TalkingClock:app:app
+web: gunicorn TalkingClockFlask\TalkingClock\TalkingClock.py:app
