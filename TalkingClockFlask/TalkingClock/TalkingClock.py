@@ -44,7 +44,7 @@ def TalkingClock_rest_request_time(arguments = None):
     type = "Requested"  ## by default, it's a requested type unless otherwise
     method = "GET"
     if request.method == "POST":#
-        method = request.get_json()
+        method = request.get_json("time")
     if time_input == None:  ## if time input is empty, user wants current time
         time_input = strftime("%H:%M", localtime()) ##   get the time in GMT
         result = TalkingClock(["REST_api", time_input]) ## call the talking clock function
