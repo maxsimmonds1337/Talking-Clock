@@ -14,7 +14,8 @@ Where time is an optional string input, such as "10:10".
 The application also works as a REST service. It uses the Flask frame work, and can be run locally with the command:
 
 ```
-./TalkingClockFlask/bootstrap.sh
+cd TalkingClockFlask/
+./bootstrap.sh
 ```
 
 This runs a shell script that invokes flask and calls the python script. It can then be accessed locally here <a href = "localhost:/5000">localhost:5000/</a>
