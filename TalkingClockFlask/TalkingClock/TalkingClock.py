@@ -1,7 +1,11 @@
 # import modules
+from asyncio import current_task
 import sys
-from time import gmtime, strftime 
+from datetime import datetime
+import pytz
 from flask import Flask, jsonify, request
+
+BST = pytz.timezone('Europe/London')
 
 app = Flask(__name__)
 
@@ -40,6 +44,7 @@ def convert_hours_to_text(number):
 @app.route("/", methods = ['GET', 'POST'])
 @app.route("/<arguments>", methods = ['GET'])
 def TalkingClock_rest_request_time(arguments = None):
+    current_time = datetime.now(BST)
     time_input = arguments
     type = "Requested"  ## by default, it's a requested type unless otherwise
     method = "GET"
@@ -48,10 +53,10 @@ def TalkingClock_rest_request_time(arguments = None):
         method = "POST" ## update the method to post
         time_input = data['time'] ## extract the POSTED time input
         if time_input == "":
-            time_input = strftime("%H:%M", gmtime()) ##   get the time in GMT
+            time_input = current_time.strftime("%H:%M") ##   get the time in GMT
             type = "Current"    ## set type to current
     if time_input == None:  ## if time input is empty, user wants current time
-        time_input = strftime("%H:%M", gmtime()) ##   get the time in GMT
+        time_input = current_time.strftime("%H:%M") ##   get the time in GMT
         type = "Current"    ## set type to current
     
     result = TalkingClock(["REST_api", time_input])
@@ -59,6 +64,7 @@ def TalkingClock_rest_request_time(arguments = None):
 
 def TalkingClock(arguments):
 
+    current_time = datetime.now(BST)
     number_of_args = len(arguments)
     text_time = "" 
 
@@ -66,7 +72,7 @@ def TalkingClock(arguments):
     if number_of_args > 2:
         return("\nusage: TalkingClock.py [HH:MM]\n")
     elif number_of_args == 1:
-        time_input = strftime("%H:%M", gmtime()) ## get the local time from the PC
+        time_input = current_time.strftime("%H:%M") ## get the local time from the PC
     else:
         time_input = arguments[1]
 
