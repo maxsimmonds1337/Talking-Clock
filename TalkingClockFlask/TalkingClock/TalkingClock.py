@@ -37,7 +37,7 @@ def convert_hours_to_text(number):
         return numbers_units[number-12]
 
 @app.route("/", methods = ['GET', 'POST'])
-@app.route("/<arguments>", methods = ['GET', 'POST'])
+@app.route("/<arguments>", methods = ['GET'])
 def TalkingClock_rest_request_time(arguments = None):
     time_input = arguments
     type = "Requested"
