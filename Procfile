@@ -1,1 +1,1 @@
-web: gunicorn .TalkingClockFlask\TalkingClock\TalkingClock.py:app
+web: gunicorn --chdir ./TalkingClockFlask/TalkingClock TalkingClock:app
