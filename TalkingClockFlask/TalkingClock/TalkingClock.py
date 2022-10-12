@@ -50,11 +50,11 @@ def TalkingClock_rest_request_time(arguments = None):
         if time_input == "":
             time_input = strftime("%H:%M", localtime()) ##   get the time in GMT
             type = "Current"    ## set type to current
-    elif time_input == None:  ## if time input is empty, user wants current time
+    if time_input == None:  ## if time input is empty, user wants current time
         time_input = strftime("%H:%M", localtime()) ##   get the time in GMT
         type = "Current"    ## set type to current
-    else:
-        result = TalkingClock(["REST_api", time_input])
+    
+    result = TalkingClock(["REST_api", time_input])
     return jsonify(method = method, time=result, type=type)
 
 def TalkingClock(arguments):
