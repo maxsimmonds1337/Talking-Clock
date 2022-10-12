@@ -45,12 +45,16 @@ def TalkingClock_rest_request_time(arguments = None):
     method = "GET"
     if request.method == "POST":#
         data = request.get_json()
-        method = data['time']
-    if time_input == None:  ## if time input is empty, user wants current time
+        method = "POST" ## update the method to post
+        time_input = data['time'] ## extract the POSTED time input
+        if time_input == "":
+            time_input = strftime("%H:%M", localtime()) ##   get the time in GMT
+            type = "Current"    ## set type to current
+    elif time_input == None:  ## if time input is empty, user wants current time
         time_input = strftime("%H:%M", localtime()) ##   get the time in GMT
-        result = TalkingClock(["REST_api", time_input]) ## call the talking clock function
         type = "Current"    ## set type to current
-    result = TalkingClock(["REST_api", time_input])
+    else:
+        result = TalkingClock(["REST_api", time_input])
     return jsonify(method = method, time=result, type=type)
 
 def TalkingClock(arguments):
