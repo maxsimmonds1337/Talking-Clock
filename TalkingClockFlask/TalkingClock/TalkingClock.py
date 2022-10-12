@@ -46,15 +46,16 @@ def TalkingClock_rest_request_time(arguments = None):
         result = TalkingClock(["REST_api", time_input])
         type = "Current"
     result = TalkingClock(["REST_api", time_input])
-    return {
-        'statusCode': 200,
-        'headers': {
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Origin': 'https://www.example.com',
-            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
-        },
-        'body': json.dumps('Hello from Lambda!')
-    }
+    return jsonify(time=result, type=type)
+    # return {
+    #     'statusCode': 200,
+    #     'headers': {
+    #         'Access-Control-Allow-Headers': 'Content-Type',
+    #         'Access-Control-Allow-Origin': 'https://www.example.com',
+    #         'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+    #     },
+    #     'body': json.dumps('Hello from Lambda!')
+    # }
 
 
 def TalkingClock(arguments):
