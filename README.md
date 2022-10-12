@@ -7,7 +7,7 @@ Talking clock code for Lloyds Banking group. This is a python application that e
 The application works as a standalone application run from the CLI, using the command (from the root directory of this repo):
 
 ```
-./TalkingClockFlask/TalkingClock/TalkingClock.py time
+python ./TalkingClockFlask/TalkingClock/TalkingClock.py time
 ```
 Where time is an optional string input, such as "10:10".
 
@@ -17,11 +17,11 @@ The application also works as a REST service. It uses the Flask frame work, and 
 ./TalkingClockFlask/bootstrap.sh
 ```
 
-This runs a shell script that invokes flask and calls the python script. It can then be accessed locally here <a>localhost:5000/</a>
+This runs a shell script that invokes flask and calls the python script. It can then be accessed locally here <a href = "localhost:/5000">localhost:5000/</a>
 
-One can either use this as an API, and POST data to the URL, or visit the site. The root directory of the website is the endpoint for the current time. To request a time, simply append it to the end <a>localhost:5000/10:10</a>
+One can either use this as an API, and POST data to the URL, or visit the site. The root directory of the website is the endpoint for the current time. To request a time, simply append it to the end <a href = "localhost:5000/10:10">localhost:5000/10:10</a>
 
-Finally, the python application is also hosted on a heroku server, here - <a>https://talking-clock.herokuapp.com/</a>. Again, one can visit this site the same as in the above example with the locally hosted application, or, one can utilise the REST API and POST a request with the payload {"time": ""}. This will return the current time. To request a specific time the payload should be {"time": "10:10"}, where 10:10 is the specific time.
+Finally, the python application is also hosted on a heroku server, here - <a href = "https://talking-clock.herokuapp.com/">https://talking-clock.herokuapp.com/</a>. Again, one can visit this site, much like the above example, with the locally hosted application, or, one can utilise the REST API and POST a request with the payload {"time": ""}. This will return the current time. To request a specific time the payload should be {"time": "10:10"}, where 10:10 is the specific time.
 
 An example of this can be seen here - <a href = "https://maxsimmonds.engineer/programming/python/TalkingClock/TalkingClock.html"> https://maxsimmonds.engineer/programming/python/TalkingClock/TalkingClock.html </a>
 
@@ -43,7 +43,13 @@ or, install from the requirements.txt:
 
 Remember to update your PATH variables if needed! The ``` --user ``` may be required for install.
 
-## Usasge
+## Usage
+
+### CLI
+
+### API
+
+### Website
 
 ### Running Tests
 
@@ -51,15 +57,6 @@ Tests are run as a github action when code is pushed to main, but to run tests l
 ```
 pytest
 ```
-
-### REST API
-Run the bootstrap executable, and navigate to <a>localhost:5000/</a>
-
-```
-./bootstrap.sh
-```
-
-If you would like to request a time, then navigate to <a>localhost:5000/10:10</a>
 
 ## Objectives 
 
