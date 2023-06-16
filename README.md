@@ -2,7 +2,7 @@
 ![Status](https://github.com/maxsimmonds1337/Talking-Clock/actions/workflows/python-app.yml/badge.svg?event=push)
 
 # Talking-Clock
-Talking clock code for Lloyds Banking group. This is a python application that either takes a time input as a string, "10:10", and returns the time in words, "Ten past ten". Or, if no time input string is given, it returns the current time (in GMT). An example can be found here - <a href = "https://maxsimmonds.engineer/programming/python/TalkingClock/TalkingClock.html"> https://maxsimmonds.engineer/programming/python/TalkingClock/TalkingClock.html </a>
+Talking clock code for Lloyds Banking group. This is a python application that either takes a time input as a string, "10:10", and returns the time in words, "Ten past ten". Or, if no time input string is given, it returns the current time (in GMT). An example can be found here - <a href = "https://maxsimmonds.engineer/programming/python/TalkingClock/TalkingClock.html"> https://maxsimmonds.engineer/Programming_Portfolio/python/TalkingClock/TalkingClock.html </a>
 
 The application works as a standalone application run from the CLI, using the command (from the root directory of this repo):
 
